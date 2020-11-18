@@ -38,6 +38,8 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 3. Boot the 'r1' VM. At this point its using the IP we put in template. Change it editing config file in '/etc/netplan' folder. Also change hostname by editing '/etc/hostname' file. Also add router startup script into root's '.profile' file ('echo "~/router.sh 16 19 123" >> /.profile' command). Script takes network numbers as parameters to autmagicaly create vlan interfaces.
 4. Reboot router VM and connect to it. Issue the 'ip address show' command... You should see similar output. It shows three vlan interfaces created with apropriate IPs.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_second_boot.png)
+5. Now the only part left is the actual FRR OSPF configuration. Here is the point FRR sucks again (at least the version i am using). First its 'vtysh' interface command doesn't work so you will have to configure each of the routing daemons separately connecting to them. Not a big deal since we only need to configure OSPF at this point. Second... and this really kills me... after you connect to 'ospfd' by issuing the 'telnet localhost ospfd' command the damn thing doesn't take any configuration comands. So you can type, type and type and all you typed goes to /dev/null :| I mean honestly at this point... what the... FRR is advertised as state of the art routing project for Linux maintained by Linux Foundation itself... But regardless, we can make it work by plugging the OSPF configuration directly into '/etc/frr/frr.conf' file.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_cfg.png)
 
 
 
