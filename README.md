@@ -9,8 +9,8 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ## Plan of action
 
-1. Install KVM - Thats already done and really all it takes its to use apt, multiple guides available on internet on how to do it, i'll skip it here.
-2. Install OVS - Pretty much the same story as KVM, 'fire apt and forget' type of process. After installation create switch named 'ovs-br0' that we will use for lab vlans.
+1. Install KVM - Thats already done and really all it takes its to use apt command. Multiple guides available on internet on how to do it, i'll skip it here.
+2. Install OVS - Pretty much the same story as KVM. The 'fire apt and forget' type of process. After installation create switch named 'ovs-br0' that we will use for lab vlans.
 
 3. Prepare the router template - Regular Ubuntu server will do, nothing special about it. Name it 'template-router'. Put some management IP from LAN.
  - Install FRR (Why FRR ? Mainly because i was familiar with Zebra and Quagga already and FRR doesn't suck bad enough to discourage me from using it. It is quite annoying though at times so perhaps i replace it with something else later. In general choice of actual routing engine doesn't matter as long as it supports OSPF, u can even write your own if you like network programming. After installation make sure FRR is actually disabled as we are not going to use systemd to run it. Issue command 'systemctl disable frr'.
