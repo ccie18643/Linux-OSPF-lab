@@ -1,10 +1,13 @@
 # Linux OSPF routing lab
 
-Goal of this project is to create fully functinal OSPF lab solely using Linux virtualization. It is going to use KVM to host the router VMs and the OVS to switch traffic between them. Also i want each of the router VMs to have separate management IP address connected to my home LAN so i can connect to them from my laptop. The LAN/management connectivity will use existing Linux Bridge and the Lab traffic will be contained in OVS. This hybrid solution is for couple reasons... First i need to use OVS for Lab because i dont' want to be messing with creating a new Linux bridge for each Lab vlan. With OVS i can just create single switch and plug a tunk port from each router in it. Why not to use OVS for home LAN connectivity then ? Well... technically i could, but i have already existing Linux bridge configuration that i have been using to share my LAN with VMs. On top of that (and this is the main reason) setting up OVS with Netplan is somewhat challenging and i simply have no time for it at the moment. This project is intended to be OSPF lab not OVS/NEtplan lab after all :) 
+Goal of this project is to create fully functional OSPF lab solely using Linux virtualization. It is going to use KVM to host the router VMs and the OVS to switch traffic between them. Also i want each of the router VMs to have separate management IP address connected to my home LAN so i can connect to them from my laptop. The LAN/management connectivity will use existing Linux Bridge and the Lab traffic will be contained in OVS. This hybrid solution is for couple reasons... First i need to use OVS for Lab because i don't want to be messing with creating a new Linux bridge for each lab vlan. With OVS i can just create single switch and plug a trunk port from each router in it. Why not to use OVS for home LAN connectivity then ? Well... technically i could, but i have already existing Linux bridge configuration that i have been using to share my LAN with VMs. On top of that (and this is the main reason) setting up OVS with Netplan is somewhat challenging and i simply have no time for it at the moment. This project is intended to be OSPF lab not OVS/Netplan lab after all :)
 
-### So here we go... the quick and dirty way of making this happen (i'll cover in detail only the interesting parts):
+### So here we go... the quick and dirty way of making this happen
 
 ![Sample PyTCP log output](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/linux_routing_lab.png)
+
+
+## Plan of action
 
 1. Install KVM - Thats already done and really all it takes its to use apt, multiple guides available on intenet on how to do it, i'll skip it here.
 2. Install OVS - Pretty much the same story as KVM, 'fire apt and forget' type of process. After installation create switch named 'ovs-br0' that we will use for lab vlans.
