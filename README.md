@@ -30,3 +30,9 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/linux_ospf_lab.png)
 
+#### I am going to explain in detail setting up one of the routers
+
+1. Clone template, name new VM as 'r1'
+
+
+
