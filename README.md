@@ -32,7 +32,9 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 #### I am going to explain in detail setting up one of the routers
 
-1. Clone template, name new VM as 'r1'
+1. Clone template, name new VM as 'r1'. I assume i don't need to explain here how to do it.
+2. Edit configuration of new VM (using 'virsh edit r1' command) and change the name of interface from 'template-router' to 'r1'. This step is importan as you really want to be able to easilly distinguish between your virtual router interfaces when using Wireshark.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_kvm_mod_if.png)
 
 
 
