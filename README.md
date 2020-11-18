@@ -26,7 +26,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
  - At this point i would also suggest to configure your router VM Linux user with the RSA ssh key you will use to connect to it, then configuring this user to be able to run sudo without password and on top of that plug 'sudo su -' at the very end of your '.bsahrc' script so u get into root shell as soon as you connect to router VM. Trust me this will make your life easier when using lab...
  - Shut down the router VM. Now you have router template that can be used to setup all of the routers in our lab.
 
-### Now using template we can relatively quickly deploy our OSPF lab 
+### Using the template we can relatively quickly deploy our OSPF lab 
 
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/linux_ospf_lab.png)
 
