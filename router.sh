@@ -17,6 +17,10 @@ then
     ip netns exec router ip link set lo up
     ip netns exec router ip link set enp6s0 up
 
+    ip netns exec router ip link add name lo0 type dummy
+    ip netns exec router ip link set lo0 up
+    ip netns exec router ip address add ${id}.${id}.${id}.${id}/32 dev lo0
+
     for network in "${@}"
     do
         ip netns exec router ip link add link enp6s0 name vlan${network} type vlan id ${network}
@@ -27,6 +31,4 @@ then
     ip netns exec router /usr/lib/frr/frrinit.sh start
 fi
 
-ip netns exec router bash
-
-
+ip netns exec router vtysh
