@@ -21,8 +21,6 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
    ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/kvm_mod_if.png)
  - Now the fun part... we need to make our router VM to actually acts as a router... Best way to do so is basically to configure all the router related setup in separate network namespace. This little script will take care of it. It creates new namespace called 'router', configures it for traffic forwarding, plugs our second network interface into it and then creates vlan interface for every subnet we want to have configured on this particular router. Scrpt will also create lo0 inteface with router id IP configured on it for convenience. Eg. for r1 it will be 1.1.1.1/32. After that is done script will start FRR and finally will give us the FRR's cli. Call the script 'ruter.sh' and put it in '/root' directory, make sure its executable. Note here that since we are just preparing router VM template u don't need to run the script just yet.
   ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/router_script.png)
- - Let's put some basic FRR configuration that we will use on all routers. Add following lines to '/etc/frr/frr.conf'. We use 'p' as password since its probably the least painful way of entering password whenever we want to connect to FRR via telnet and for lab environment it really doesn't matter.
-  ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/frr_init_cfg.png)
  - I would also suggest to configure your router VM Linux user with the RSA ssh key you will use to connect to it. Then configure this user to be able to run sudo without password and on top of that plug 'sudo su -' at the very end of your '.bsahrc' script so u get into root shell as soon as you connect to router VM. Trust me this will make your life easier when using lab...
  - Shut down the router VM. Now you have router template that can be used to setup all of the routers in our lab.
 
@@ -36,11 +34,9 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 2. Edit configuration of new VM (using 'virsh edit r1' command) and change the name of interface from 'template-router' to 'r1'. This step is important as you really want to be able to easily distinguish between your virtual router interfaces when using Wireshark.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_kvm_mod_if.png)
 3. Boot the 'r1' VM and connect to it. It is using the IP we put in template. Change it editing config file in '/etc/netplan' folder. Also change hostname by editing '/etc/hostname' file. Also add router startup script into root's '.profile' file ('echo "~/router.sh 16 19 123" >> /.profile' command). Script takes network numbers as parameters to autmagicaly create vlan interfaces.
-4. Reboot router VM and connect to it. Issue the 'ip address show' command... You should see similar output. It shows three vlan interfaces created with appropriate IPs.
+4. Reboot router VM and connect to it. You will be placed directly into FFR's command line. 
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_second_boot.png)
-5. Now the only part left is the actual FRR OSPF configuration. Lets just put router name for now.
-![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_cfg.png)
-6. At this point we are done with r1. I have also configured r2 and r3 to show the OSPF peering forming up.
+5. At this point we are done with r1. I have also configured r2 and r3 to show the OSPF peering forming up.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei_pcap.png)
 
