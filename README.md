@@ -34,7 +34,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 2. Edit configuration of new VM (using 'virsh edit r1' command) and change the name of interface from 'template-router' to 'r1'. This step is important as you really want to be able to easily distinguish between your virtual router interfaces when using Wireshark.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_kvm_mod_if.png)
 3. Boot the 'r1' VM and connect to it. It is using the IP we put in template. Change it editing config file in '/etc/netplan' folder. Also change hostname by editing '/etc/hostname' file. Also add router startup script into root's '.profile' file ('echo "~/router.sh 16 19 123" >> /.profile' command). Script takes network numbers as parameters to autmagicaly create vlan interfaces.
-4. Reboot router VM and connect to it. You will be placed directly into FFR's command line. 
+4. Reboot router VM and connect to it. You will be placed directly into FFR's command line. You can see the inteface list populated from Linux interfaces created by script.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_second_boot.png)
 5. At this point we are done with r1. I have also configured r2 and r3 to show the OSPF peering forming up.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei.png)
