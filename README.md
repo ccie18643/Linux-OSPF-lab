@@ -36,7 +36,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 3. Boot the 'r1' VM and connect to it. It is using the IP we put in template. Change it editing config file in '/etc/netplan' folder. Also change hostname by editing '/etc/hostname' file. Also add router startup script into root's '.profile' file ('echo "~/router.sh 16 19 123" >> /.profile' command). Script takes network numbers as parameters to autmagicaly create vlan interfaces.
 4. Reboot router VM and connect to it. You will be placed directly into FFR's command line. You can see the inteface list populated from Linux interfaces created by script.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_second_boot.png)
-5. At this point we are done with r1. I have also configured couple more routes to show the populated routing table and the OSPF peering forming up.
+5. At this point we are done with r1. I have also configured couple more routers to show populated routing table and OSPF peering forming up.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei_pcap.png)
 
