@@ -47,7 +47,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ### Let's look at some OSPF pcakets
 
-- Type 1 LSA advertised from r8 to r7. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1.
+- Type 1 (Router) LSA advertised from r8 to r7. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_db_r1.png)
 
