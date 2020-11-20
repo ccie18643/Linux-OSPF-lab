@@ -41,7 +41,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/r1_ospf_nei_pcap.png)
 6. It didn't occur to me earlier but there is crtain configuration that needs to be done on OVS to prevent multicast traffic from all vlans to show on every router port. This will not effect the FRR as FRR uses the vlan intefaces not the actual trunk port, but it will show up on Wireshark when listening on router port. I am not sure about permannt solution just yet but quick fix for this problem is defining vlans that can be trunked on each router port attached to OVS.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/ovs_trunk_setup.png)
-7. Perhaps even better idea for hooking up Wireshark is to create dummy interface on host machine and confguring it as mirror port vor all vlans on OVS. This little script will do it for us. Then we can filter the exact vlan we want to see using vlan tag filtereing under Wireshark.
+7. Perhaps even better idea for hooking up Wireshark is to create dummy interface on host machine and confguring it as mirror port for all vlans on OVS. This little script will do it for us. Then we can filter the exact vlan we want to see using vlan id filtereing under Wireshark.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/labtap.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/ws_tag_filter.png)
 
