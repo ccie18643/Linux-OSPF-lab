@@ -47,7 +47,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ### Let's have a look at some OSPF packets then...
 
-- **Hello** packets are being sent peiodicaly by all OSPF routers to indicate they are alive, to share basic OSPF parameters and to form peerings. Bellow example of r1 sending out hello packet on segment 123. Since this is multiaccess segment the hello packet additionally contains information about DR (Designated Router) and BDR (Backup Designated Router) that are present on this segment. This information on point-to-point link would be all 0s.
+- **Hello** packets are being sent periodicaly by all OSPF routers to indicate they are alive, to share basic OSPF parameters and to form peerings. Bellow example of r1 sending out hello packet on segment 123. Since this is multiaccess segment the hello packet additionally contains information about DR (Designated Router) and BDR (Backup Designated Router) that are present on this segment. This information on point-to-point link would be all 0s.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/hello_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/hello_pcap_2.png)
 - **Type 1** (Router) LSA advertised from r8 to r7 over point-to-point link. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1. Screenshot of OSPF database taken from r1.
