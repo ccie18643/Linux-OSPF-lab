@@ -55,7 +55,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_db_r1.png)
-- **Type 5** (External) LSA advertised from r9 to r1. I have configured three 172.16.9[1-3].0/24 static routes on r9 and redistributed them into OSPF. That essentially made r9 and ASBR (Autonomous System Border Router). We can see those prefixes being advertised from r9 to r1. Since i dn't have configured any filtering, summarization or stub areas those three prefixes are being advertised (in a distance-vector manner, not a bad trick for a so called link-state protocol, huh ?) to every router in lab network. Screenshot of OSPF database taken form r8.
+- **Type 5** (External) LSA advertised from r9 to r1. I have configured three 172.16.9[1-3].0/24 static routes on r9 and redistributed them into OSPF. That essentially made r9 and ASBR (Autonomous System Border Router). We can see those prefixes being advertised from r9 to r1. Since i don't have configured any filtering, summarization or stub areas those three prefixes are being advertised (in a distance-vector manner, not a bad trick for a so called link-state protocol, huh ?) to every router in lab network. Screenshot of OSPF database taken form r8.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_db_r8.png)
