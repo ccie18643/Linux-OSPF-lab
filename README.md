@@ -55,7 +55,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_db_r1.png)
-- **Type 3** (Network Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises prefixes received from other areas (in a distance-vector manner, not a bad trick for a so called link-state protocol, huh ?) into area 1. Screenshot of OSFP database taken from r8.
+- **Type 3** (Network Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises prefixes received from other areas (in a distance-vector manner) into area 1. Screenshot of OSFP database taken from r8.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_db_r8.png)
@@ -67,3 +67,5 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_db_r8.png)
+
+#### At this point we can clearly seethat out of five standard (and many non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Only lsas type 1 and 2 are being fed to the Dijkstra algorithm. Well can't really blame OSPF for that sinc it's main competitior ISIS does exactly the same :)
