@@ -59,6 +59,10 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_db_r8.png)
+- **Type 4** (ASBR Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises all known ASBR routers (in a distance-vector manner again) into area 1. Type 4 LSAs are needed because routers in diffeent areas otherwise wouldn't be able to figure out how to get to ASBR since Type 1 LSA do not pass area boundries. Screenshot of OSFP database taken from r8 shows the same information advrtised into area 1 by r1 and r3.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_2.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_db_r8.png)
 - **Type 5** (External) LSA advertised from r9 to r1. I have configured three 172.16.9[1-3].0/24 static routes on r9 and redistributed them into OSPF. That essentially made r9 and ASBR (Autonomous System Border Router). We can see those prefixes being advertised from r9 to r1. Since i don't have configured any filtering, summarization or stub areas those three prefixes are being advertised (and again a distance-vector thing) to every router in lab network. Screenshot of OSPF database taken form r8.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_2.png)
