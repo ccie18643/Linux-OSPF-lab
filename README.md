@@ -68,4 +68,4 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_db_r8.png)
 
-#### At this point we can clearly see that out of five standard (and many non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well can't really blame OSPF for that since it's main competitior ISIS does exactly the same :)
+#### At this point we can clearly see that out of five standard (and many non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
