@@ -45,7 +45,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/labtap.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/ws_tag_filter.png)
 
-### Let's have a look at some OSPF packets then...
+### Let's take a look at some OSPF packets then...
 
 - **Hello** packets are being sent periodicaly by all OSPF routers to indicate they are alive, to share basic OSPF parameters and to form peerings. Bellow example of r1 sending out hello packet on segment 123. Since this is multiaccess segment the hello packet additionally contains information about DR (Designated Router) and BDR (Backup Designated Router) that are present on this segment. This information on point-to-point link would be all 0s.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/hello_pcap_1.png)
@@ -56,6 +56,12 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 - **Link State Request** packets are being sent out by routers to request information from peer routers that will help to build (or fill the gaps in) their own database. Here r5 is requesting r3 to send it couple LSAs based on the information r5 received in the Database Description packet from r3 earlier.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbreq_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbreq_pcap_2.png)
+- **Link State Update** packets are being sent out by routers in response to Link State Requests. Here r3 is responding with some of the information that has been earlier requested by r5. At this point it seems to me that r3 is sending much more information that what r5 requested but perhaps its trying to fill r5's database also based on recently received r5's Database Description packet. This is something i need to dig more into OSPF RFC and perhaps read some FRR source code to figure out the exact mechanism its used here.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbres_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbres_pcap_2.png)
+
+### Now let's take a look at actual OSPF LSAs being careied in the Link State Update packets...
+
 - **Type 1** (Router) LSA advertised from r8 to r7 over point-to-point link. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1. Screenshot of OSPF database taken from r1.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_2.png)
