@@ -51,7 +51,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_db_r1.png)
-- **Type 2** (Network) LSA advertised from DR (Designated Router) to all other routers on the same network segment. It advertises segment's subnet mask and lists all the OSPF routers cnnected to this segment. Same LSA visible in OSPF database of any router in area 0. Screenshot of OSPF database taken from r1.
+- **Type 2** (Network) LSA advertised from DR (Designated Router) to all other routers on the same network segment. It advertises segment's subnet mask and lists all the OSPF routers connected to this segment. Same LSA visible in OSPF database of any router in area 0. Screenshot of OSPF database taken from r1.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_db_r1.png)
@@ -59,7 +59,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_db_r8.png)
-- **Type 4** (ASBR Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises all known ASBR routers (in a distance-vector manner again) into area 1. Type 4 LSAs are needed because routers in diffeent areas otherwise wouldn't be able to figure out how to get to ASBR since Type 1 LSA do not pass area boundries. Screenshot of OSFP database taken from r8 shows the same information advrtised into area 1 by r1 and r3.
+- **Type 4** (ASBR Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises all known (to r1 in this case) ASBR routers (in a distance-vector manner again) into area 1. Type 4 LSAs are needed because routers in diffeent areas otherwise wouldn't be able to figure out how to get to ASBR since Type 1 LSA do not pass area boundries. Screenshot of OSFP database taken from r8 shows the same information advrtised into area 1 by r1 and r3.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_db_r8.png)
