@@ -53,6 +53,9 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 - **Database Description** packets are being sent out by routers to inform their neighbors about content of the originating router's database. They do not contain full LSAs just LSA's headers with information required to identify particular LSA. Here i have just rebooted r5 and r3 is informing it what LSAs it has in it's database. Based on this information r5 can ask r3 to send it the specific LSAs that r5 doesn't yet have in its own database (although r5 just rebooted it might aleady learn some or even all of them  from r2).
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbdes_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbdes_pcap_2.png)
+- **Link State Request** packets are being sent out by routers to request information from peer routers that will help to build (or fill the gaps in) their own database. Here r5 is requesting r3 to send it couple LSAs based on the information r5 received in the Database Description packet from r3 earlier.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbreq_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbreq_pcap_2.png)
 - **Type 1** (Router) LSA advertised from r8 to r7 over point-to-point link. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1. Screenshot of OSPF database taken from r1.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_2.png)
