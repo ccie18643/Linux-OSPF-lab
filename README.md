@@ -47,8 +47,12 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ### Let's have a look at some OSPF packets then...
 
-- Type 1 (Router) LSA advertised from r8 to r7 (10.0.78.8 -> 224.0.0.5). It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1.
+- Type 1 (Router) LSA advertised from r8 to r7. It describes three of the r8's links (8.8.8.8/32, 10.0.68.0/24, 10.0.68.0/24) and two point-to-point peerings (6.6.6.6 and 7.7.7.7). The same LSA can obviously be found on any router that is part of area 1.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa1_db_r1.png)
-- Type 2 (Network) LSA advertised from DR (Designated Router) to all other routers on the same network segment (10.0.123.3 -> 224.0.0.5). It describes
+- Type 2 (Network) LSA advertised from DR (Designated Router) to all other routers on the same network segment. It lists all the OSPF routers cnnected to this segment. Same LSA visible in OSPF database of any router in area 0.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_pcap_2.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa2_db_r1.png)
+
