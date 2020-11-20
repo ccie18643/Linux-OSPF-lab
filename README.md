@@ -59,6 +59,9 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 - **Link State Update** packets are being sent out by routers in response to Link State Requests. Here r3 is responding with some of the information that has been earlier requested by r5. At this point it seems to me that r3 is sending much more information that what r5 requested but perhaps its trying to fill r5's database also based on recently received r5's Database Description packet. This is something i need to read more about in OSPF RFC and perhaps look at FRR source code to figure out the exact mechanism being used in this case.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbres_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbres_pcap_2.png)
+- **Link State Acknowledgment** packets are being sent out by routers in response to Link State Updates. Here r5 is responding to the Link State Update packet it received earlier from r3. Packet contains only LSA headers.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dback_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dback_pcap_2.png)
 
 ### Now let's take a look at actual OSPF LSAs being careied in the Link State Update packets...
 
