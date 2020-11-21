@@ -98,4 +98,4 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 - **Virtual link** set up between routers r4 and r3 for the purpose of keeping are 2 connected to area 0 in case link between r1 and r9 died. Capture shows unicast packet exchange between those two routers.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r3.png)
-![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r4.png
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r4.png)
