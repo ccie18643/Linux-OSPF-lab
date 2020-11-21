@@ -85,5 +85,10 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa5_db_r8.png)
+- **Type 7** (NSSA-External) LSA advertised from r9 to r1. At this point I have configured area 2 as NSSA (Not So Stubby Araea) which essentially prohibited it from using Type 5 LSAs so instead Type 7 LSA need to be used to deliver the information about external prefixes from r9 to r1 and r4. Router r1 is also convertng that Type 7 LSA into regular Type 5 LSA and advrtising it to other areas. First OSPF database screenshot show prefix 172.16.91.0/24 beng kept as LSA 7 on r1 and the second screenshot shows the same prefix being kept as Type 5 in r8's database. In matter of fact the Type 5 LSA for the same traffic can be obviously found in r1's database as well so r1 will keep both Type 5 and Type 7 LSAs for the 172.16.91.0/24 prefix.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_pcap_2.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_db_r1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_db_r8.png)
 
-#### At this point we can clearly see that out of five standard (and many non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
+#### At this point we can clearly see that out of six standard (and any non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
