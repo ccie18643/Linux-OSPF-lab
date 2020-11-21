@@ -99,3 +99,11 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r3.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r4.png)
+
+### Troubleshooting...
+
+- **MTU mismatch** introduced between r7 and r8. I have lowered the r7's vlan78 interface mtu to 1400. This caused both routers to get stuck in Exstart OSPF FSM state. In this state routers are making attempt to synchronize their databases by sending Database Description packets. Those packets contain the link mtu value of the sender router and in case they do not match the peerng will not be fully formed. Here is the packet exchange between both routers showing the mtu values in their Database DEscription packets. One thing to note here is that mtu mismatch is not being detected during the initial Hello packet exchange (like any other parameter mismatch would) simply because hello packets do not carry router's link mtu value.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/mtu_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/mtu_pcap_2.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/mtu_pcap_2.png)
+
