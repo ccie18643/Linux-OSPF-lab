@@ -92,3 +92,10 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_db_r8.png)
 
 #### At this point we can clearly see that out of six standard (and any non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
+
+### Some other interesting cases and scenarios...
+
+- **Virtual link** set up between routers r4 and r3 for the purpose of keeping are 2 connected to area 0 in case link between r1 and r9 died. Capture shows unicast packet exchange between those two routers.
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_pcap_1.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r3.png)
+![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/vlink_db_r4.png
