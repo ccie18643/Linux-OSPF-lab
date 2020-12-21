@@ -9,7 +9,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ### Plan of action
 
-1. Install KVM - Thats already done and really all it takes its to use apt command. Multiple guides available on internet on how to do it, i'll skip it here.
+1. Install KVM - That's already done and really all it takes its to use apt command. Multiple guides available on internet on how to do it, i'll skip it here.
 2. Install OVS - Pretty much the same story as KVM. The 'fire apt and forget' type of process. After installation create switch named 'ovs-br0' that we will use for lab vlans.
 
 3. Prepare the router template - Regular Ubuntu server will do, nothing special about it. Name it 'template-router'. Put some management IP from LAN.
@@ -19,7 +19,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
    ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/kvm_add_if.png)
    - Edit router VM configuration (using 'virsh edit template-router' command) and add the highlighted entries. When you boot router VM it will autmagicaly plug it's second interface into the 'ovs-br0' switch we created earlier.
    ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/kvm_mod_if.png)
- - Now the fun part... we need to make our router VM to actually acts as a router... Best way to do so is basically to configure all the router related setup in separate network namespace. This little script will take care of it. It creates new namespace called 'router', configures it for traffic forwarding, plugs our second network interface into it and then creates vlan interface for every subnet we want to have configured on this particular router. Scrpt will also create lo0 inteface with router id IP configured on it for convenience. Eg. for r1 it will be 1.1.1.1/32. After that is done script will start FRR and finally will give us the FRR's cli. Call the script 'ruter.sh' and put it in '/root' directory, make sure its executable. Note here that since we are just preparing router VM template u don't need to run the script just yet.
+ - Now the fun part... we need to make our router VM to actually acts as a router... Best way to do so is basically to configure all the router related setup in separate network namespace. This little script will take care of it. It creates new namespace called 'router', configures it for traffic forwarding, plugs our second network interface into it and then creates vlan interface for every subnet we want to have configured on this particular router. Scrpt will also create lo0 interface with router id IP configured on it for convenience. Eg. for r1 it will be 1.1.1.1/32. After that is done script will start FRR and finally will give us the FRR's cli. Call the script 'ruter.sh' and put it in '/root' directory, make sure its executable. Note here that since we are just preparing router VM template u don't need to run the script just yet.
   ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/router_script.png)
  - I would also suggest to configure your router VM Linux user with the RSA ssh key you will use to connect to it. Then configure this user to be able to run sudo without password and on top of that plug 'sudo su -' at the very end of your '.bsahrc' script so u get into root shell as soon as you connect to router VM. Trust me this will make your life easier when using lab...
  - Shut down the router VM. Now you have router template that can be used to setup all of the routers in our lab.
@@ -47,10 +47,10 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 
 ### Let's take a look at some OSPF packets then...
 
-- **Hello** packets are being sent periodicaly by all OSPF routers to indicate they are alive, to share basic OSPF parameters and to form peerings. Bellow example of r1 sending out hello packet on segment 123. Since this is multiaccess segment the hello packet additionally contains information about DR (Designated Router) and BDR (Backup Designated Router) that are present on this segment. This information on point-to-point link would be all 0s.
+- **Hello** packets are being sent periodically by all OSPF routers to indicate they are alive, to share basic OSPF parameters and to form peerings. Below example of r1 sending out hello packet on segment 123. Since this is multiaccess segment the hello packet additionally contains information about DR (Designated Router) and BDR (Backup Designated Router) that are present on this segment. This information on point-to-point link would be all 0s.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/hello_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/hello_pcap_2.png)
-- **Database Description** packets are being sent out by routers to inform their neighbors about content of the originating router's database. They do not contain full LSAs just LSA's headers with information required to identify particular LSA. Here i have just rebooted r5 and r3 is informing it what LSAs it has in it's database. Based on this information r5 can ask r3 to send it the specific LSAs that r5 doesn't yet have in its own database (although r5 just rebooted it might aleady learn some or even all of them  from r2).
+- **Database Description** packets are being sent out by routers to inform their neighbors about content of the originating router's database. They do not contain full LSAs just LSA's headers with information required to identify particular LSA. Here i have just rebooted r5 and r3 is informing it what LSAs it has in it's database. Based on this information r5 can ask r3 to send it the specific LSAs that r5 doesn't yet have in its own database (although r5 just rebooted it might already learn some or even all of them  from r2).
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbdes_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/dbdes_pcap_2.png)
 - **Link State Request** packets are being sent out by routers to request information from peer routers that will help to build (or fill the gaps in) their own database. Here r5 is requesting r3 to send it couple LSAs based on the information r5 received in the Database Description packet from r3 earlier.
@@ -77,7 +77,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa3_db_r8.png)
-- **Type 4** (ASBR Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises all known (to r1 in this case) ASBR routers (in a distance-vector manner again) into area 1. Type 4 LSAs are needed because routers in diffeent areas otherwise wouldn't be able to figure out how to get to ASBR since Type 1 LSA do not pass area boundries. Screenshot of OSFP database taken from r8 shows the same information advrtised into area 1 by r1 and r3.
+- **Type 4** (ASBR Summary) LSA advertised from ABR (Area Border Route) to all routers in the area. It advertises all known (to r1 in this case) ASBR routers (in a distance-vector manner again) into area 1. Type 4 LSAs are needed because routers in different areas otherwise wouldn't be able to figure out how to get to ASBR since Type 1 LSA do not pass area boundaries. Screenshot of OSFP database taken from r8 shows the same information advrtised into area 1 by r1 and r3.
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_pcap_2.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa4_db_r8.png)
@@ -91,7 +91,7 @@ Goal of this project is to create fully functional OSPF lab solely using Linux v
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_db_r1.png)
 ![Screenshot](https://github.com/ccie18643/Linux-OSPF-lab/blob/main/pictures/lsa7_db_r8.png)
 
-#### At this point we can clearly see that out of six standard (and any non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basicaly only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
+#### At this point we can clearly see that out of six standard (and any non standard) LSAs only two have anything to do with link state nature of OSPF protocol. Basically only types 1 and 2 are being fed to the Dijkstra algorithm. Well... can't really blame OSPF for that since it's more serious brother, the ISIS does exactly the same :)
 
 ### Some other interesting cases and scenarios...
 
