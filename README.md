@@ -1,6 +1,6 @@
 # Linux OSPF routing lab
 
-### Simple tutorial
+### Simple routing tutorial
 <br>
 
 The goal of this project is to create a fully functional OSPF lab solely using Linux virtualization. It will use KVM to host the router VMs and the OVS to switch traffic between them. Also, I want each of the router VMs to have a separate management IP address connected to my home LAN so I can connect to them from my laptop. The LAN connectivity will use the existing Linux Bridge, and the lab traffic will be contained in OVS. This hybrid solution is used for a couple of reasons. First, I need to use OVS for the lab because I want to save time creating a new Linux bridge for each lab VLAN I want to use for OSPF [this was written before the multi-VLAN feature was implemented into the Linux bridge]. With OVS, I can create a single switch and plug the trunk port from each router into it. Why not use OVS for home LAN connectivity as well, then? Well, technically, I could, but I already have an existing Linux bridge configuration that I have been using to share my LAN with regular VMs. On top of that (and this is the main reason), setting up OVS with Netplan is somewhat challenging, and I have no time for it now. This project is intended to be OSPF lab, not OVS/Netplan lab, after all :)
